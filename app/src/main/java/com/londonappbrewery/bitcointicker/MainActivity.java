@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cz.msebera.android.httpclient.Header;
 
 
@@ -23,14 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
     // Member Variables:
     TextView mPriceTextView;
-    TextView mBase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mPriceTextView = (TextView) findViewById(R.id.priceLabel);
-        mBase = (TextView) findViewById(R.id.textView);
         Spinner spinner = (Spinner) findViewById(R.id.currency_spinner);
 
         // Create an ArrayAdapter using the String array and a spinner layout
@@ -66,9 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Log.d("Bitcoin", "JSON: " + responseBody.toString());
-                String reponse = new String(responseBody);
-                Log.d("Bitcoin", reponse);
+                try {
+                    JSONObject objet = new JSONObject(new String(responseBody));
+                    mPriceTextView.setText(objet.getString("ask"));
+                    Log.d("Bitcoin", "Cela donne : " + objet.getString("ask"));
+                } catch (JSONException e) {
+                    Log.d("Bitcoin", "Le parse du JSON ne fonctionne pas");
+                }
             }
 
             @Override

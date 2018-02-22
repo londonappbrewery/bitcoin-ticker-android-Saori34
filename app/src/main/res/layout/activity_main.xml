@@ -47,14 +47,14 @@
             android:textStyle="bold"
             android:id="@+id/textView"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/currency_spinner"
-            android:gravity="center_horizontal"
+
             android:spinnerMode="dropdown"
             android:dropDownSelector="@color/fontColour"
             />

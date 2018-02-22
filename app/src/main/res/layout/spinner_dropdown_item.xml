@@ -13,8 +13,7 @@
     android:background="@drawable/color_selector"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-
-    android:maxLines="1"/>
+    android:singleLine="true" />
 
 
 
